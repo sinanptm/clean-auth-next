@@ -8,7 +8,7 @@ import SubmitButton from "@/components/forms/elements/SubmitButton";
 import { signupSchema } from "@/lib/schema";
 import { SignupFormData, SignupFormProps } from "@/types";
 import Link from "next/link";
-import useSignUpUser from "@/hooks/api/user/auth/useSignup";
+import useSignUpUser from "@/hooks/api/auth/useSignup";
 
 const SignupForm = ({
   className = "",

@@ -9,7 +9,7 @@ import CustomInput from "@/components/forms/elements/CustomInput";
 import SubmitButton from "../forms/elements/SubmitButton";
 import { ForgotPasswordData, ForgotPasswordDialogProps } from "@/types";
 import { forgotPasswordSchema } from "@/lib/schema";
-import useForgotPasswordUser from "@/hooks/api/user/auth/useForgotPassword";
+import useForgotPasswordUser from "@/hooks/api/auth/useForgotPassword";
 
 const ForgotPasswordDialog = ({
   open,

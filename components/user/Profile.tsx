@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import useGetProfile from "@/hooks/api/user/useGetProfile";
-import useUpdateProfile from "@/hooks/api/user/useUpdateProfile";
+import useGetProfile from "@/hooks/api/useGetProfile";
+import useUpdateProfile from "@/hooks/api/useUpdateProfile";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";

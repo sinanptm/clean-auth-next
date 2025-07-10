@@ -8,8 +8,7 @@ export enum PostRoutes {
   UserRefresh = "/auth/refresh",
   OAuthSignIn = "/auth/oauth-2",
 
-  AdminSignin = "/admin/auth",
-  AdminRefresh = "/admin/auth/refresh",
+
 }
 export enum PostRoutesWithParams {
   test = "/test/:id",

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
 import CustomInput from "@/components/forms/elements/CustomInput";
 import SubmitButton from "@/components/forms/elements/SubmitButton";
-import useResetPasswordUser from "@/hooks/api/user/auth/useResetPassword";
+import useResetPasswordUser from "@/hooks/api/auth/useResetPassword";
 import { resetPasswordSchema } from "@/lib/schema";
 import type { ResetPasswordFormData, ResetPasswordFormProps } from "@/types";
 

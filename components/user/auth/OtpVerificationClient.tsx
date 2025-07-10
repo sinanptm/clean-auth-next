@@ -1,9 +1,9 @@
 "use client";
 
 import { useCallback } from "react";
-import useVerifyOtpUser from "@/hooks/api/user/auth/useVerifyOtp";
+import useVerifyOtpUser from "@/hooks/api/auth/useVerifyOtp";
 import useMailSetter from "@/hooks/store/auth/useMailSetter";
-import useResendOtpUser from "@/hooks/api/user/auth/useResendOtp";
+import useResendOtpUser from "@/hooks/api/auth/useResendOtp";
 import OtpVerificationForm from "@/components/forms/OtpVerificationForm";
 
 const OtpVerificationClient = () => {
