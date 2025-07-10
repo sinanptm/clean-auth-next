@@ -1,5 +1,5 @@
 export enum PutRoutes {
-  UpdateProfile = "/profile",
+  Test = "/test",
 }
 
 export enum PutRoutesWithParams {

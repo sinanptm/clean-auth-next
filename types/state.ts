@@ -13,11 +13,6 @@ export interface UserAuthState {
   initialize: (token: string | null, user: User | null) => void;
 }
 
-export interface ForgotPasswordState {
-  email: string;
-  setEmail: (email: string) => void;
-  clear: () => void;
-}
 
 export interface LoadingState {
   isLoading: boolean;

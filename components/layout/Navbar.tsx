@@ -8,6 +8,8 @@ import useLogoutUser from "@/hooks/api/auth/useLogout";
 import LogoutConfirmDialog from "@/components/dialogs/LogoutConfirmDialog";
 import { APP_NAME } from "@/constants";
 import { UserRole } from "@/types";
+import dynamic from "next/dynamic";
+const ThemeButton = dynamic(() => import("@/components/ThemeButton"), { ssr: false });
 
 const Navbar = () => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
@@ -37,6 +39,7 @@ const Navbar = () => {
             {APP_NAME}
           </Link>
           <div className="flex items-center space-x-4">
+            <ThemeButton />
             {isUserAuthenticated ? (
               <Button variant="outline" size="sm" onClick={handleLogoutClick}>
                 Logout
@@ -44,12 +47,12 @@ const Navbar = () => {
             ) : (
               <>
                 <Link href="/auth" prefetch={false}>
-                  <Button variant="default" size="sm">
+                    <Button variant="outline" size="sm">
                     Sign In
                   </Button>
                 </Link>
                 <Link href="/auth/signup" prefetch={false}>
-                  <Button variant="default" size="sm">
+                    <Button variant="outline" size="sm">
                     Sign Up
                   </Button>
                 </Link>
