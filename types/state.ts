@@ -1,10 +1,3 @@
-export interface AdminAuthState {
-  isAuthenticated: boolean;
-  token: string | null;
-  setToken: (token: string) => void;
-  logout: () => void;
-  initialize: (token: string | null) => void;
-}
 type User = {
   name: string;
   id: string;

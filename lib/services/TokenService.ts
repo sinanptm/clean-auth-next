@@ -1,51 +1,35 @@
-import ITokenService, {
-  AccessTokenPayload,
-  RefreshTokenPayload,
-} from "@/domain/interfaces/services/ITokenService";
 import { JwtPayload, TokenExpiredError, sign, verify, SignOptions } from "jsonwebtoken";
-import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from "@/config";
-import { CustomError, ForbiddenError } from "@/domain/entities/CustomErrors";
+import { TOKEN_SECRET } from "@/config";
 
-import { StatusCode } from "@/types";
+type TokenPayLoad = {
+  email: string;
+  id: string;
+  profile?: string;
+}
 
-export default class TokenService implements ITokenService {
+export default class TokenService {
   private signToken(payload: object, secret: string, options: SignOptions): string {
     return sign(payload, secret, { expiresIn: options.expiresIn });
   }
-  private verifyToken(token: string, secret: string, type: "refresh" | "access"): JwtPayload {
+  private verify(token: string, secret: string): JwtPayload {
     try {
       return verify(token, secret) as JwtPayload;
     } catch (error) {
       if (error instanceof TokenExpiredError) {
-        if (type == "refresh") {
-          throw new CustomError("Token expired", StatusCode.Forbidden);
-        } else {
-          throw new CustomError("Token expired", StatusCode.TokenExpired);
-        }
+        throw new Error("Token expired");
       }
-      throw new ForbiddenError("Invalid token");
+      throw new Error("Invalid token");
     }
   }
 
-  createRefreshToken({ email, id }: RefreshTokenPayload): string {
-    return this.signToken({ email, id }, REFRESH_TOKEN_SECRET!, {
+  createToken({ email, id }: TokenPayLoad): string {
+    return this.signToken({ email, id }, TOKEN_SECRET!, {
       expiresIn: "7d",
     });
   }
 
-  verifyRefreshToken(token: string): RefreshTokenPayload {
-    const decoded = this.verifyToken(token, REFRESH_TOKEN_SECRET!, "refresh");
-    return { email: decoded.email, id: decoded.id };
-  }
-
-  createAccessToken({ email, id, role }: AccessTokenPayload): string {
-    return this.signToken({ email, id, role }, ACCESS_TOKEN_SECRET!, {
-      expiresIn: "5m",
-    });
-  }
-
-  verifyAccessToken(token: string): AccessTokenPayload {
-    const { email, id, role } = this.verifyToken(token, ACCESS_TOKEN_SECRET!, "access");
-    return { email, id, role };
+  verifyToken(token: string): TokenPayLoad {
+    const { email, id } = this.verify(token, TOKEN_SECRET!);
+    return { email, id };
   }
 }

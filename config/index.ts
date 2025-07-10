@@ -4,8 +4,7 @@ export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhos
 
 export const MONGO_URI = process.env.MONGO_URI ?? "mongodb://mongo:27017/myapp";
 export const NODE_ENV = process.env.NODE_ENV ?? "dev";
-export const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET ?? "Secreta";
-export const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET ?? "Secret";
+export const TOKEN_SECRET = process.env.TOKEN_SECRET ?? "Secreta";
 
 export const FIREBASE_CLIENT_EMAIL = process.env.FIREBASE_CLIENT_EMAIL;
 export const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;

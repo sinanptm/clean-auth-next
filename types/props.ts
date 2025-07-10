@@ -10,11 +10,6 @@ export interface SigninFormProps {
   className?: string;
   submitButtonText?: string;
 
-  onForgotPassword?: () => void;
-  showForgotPassword?: boolean;
-  forgotPasswordText?: string;
-  forgotPasswordLink?: string;
-
   showSignUp?: boolean;
   signUpText?: string;
   signUpLinkText?: string;

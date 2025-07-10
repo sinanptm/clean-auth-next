@@ -21,3 +21,5 @@ export interface IUser {
   readonly createdAt?: DateString;
   readonly profile?: string;
 }
+
+export type OAuthUser = Pick<IUser, "profile" | "name" | "email">;
