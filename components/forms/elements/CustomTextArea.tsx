@@ -4,10 +4,24 @@ import { cn } from "@/lib/utils";
 import FormFieldWrapper from "./FormFieldWrapper";
 import { BaseFormFieldProps } from "@/types";
 
+/**
+ * @interface CustomTextAreaProps
+ * @description Props for the CustomTextArea component, extending BaseFormFieldProps and standard HTML textarea attributes.
+ * @extends BaseFormFieldProps
+ * @extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
+ */
 interface CustomTextAreaProps extends BaseFormFieldProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  resize?: boolean;
+  /**
+   * @property resize - If true, allows the textarea to be resized by the user. Defaults to true.
+   */
 }
 
+/**
+ * @function CustomTextArea
+ * @description A customizable textarea component that integrates with form field wrapper for consistent styling and error handling.
+ * @param props - The properties for the CustomTextArea component.
+ * @returns A React element representing the custom textarea.
+ */
 const CustomTextArea = ({ resize = true, ...props }: CustomTextAreaProps) => {
   // eslint-disable-next-line
   const { error, showHint, ...textAreaProps } = props;

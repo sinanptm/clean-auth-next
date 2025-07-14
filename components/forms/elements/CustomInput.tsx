@@ -5,8 +5,20 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { BaseFormFieldProps } from "@/types";
 
+/**
+ * @interface CustomInputProps
+ * @description Props for the CustomInput component, extending BaseFormFieldProps and standard HTML input attributes.
+ * @extends BaseFormFieldProps
+ * @extends React.InputHTMLAttributes<HTMLInputElement>
+ */
 interface CustomInputProps extends BaseFormFieldProps, React.InputHTMLAttributes<HTMLInputElement> {}
 
+/**
+ * @function CustomInput
+ * @description A customizable input component that supports various HTML input types, including a toggle for password visibility.
+ * @param props - The properties for the CustomInput component.
+ * @returns A React element representing the custom input.
+ */
 const CustomInput = ({ type, ...props }: CustomInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   // eslint-disable-next-line

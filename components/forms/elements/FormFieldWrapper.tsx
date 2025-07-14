@@ -5,6 +5,21 @@ import { memo, useId } from "react";
 import { cn } from "@/lib/utils";
 import { FormFieldWrapperProps } from "@/types";
 
+/**
+ * @function FormFieldWrapper
+ * @description A wrapper component for form fields that provides consistent labeling, error display, hints, and accessibility features.
+ * @param props - The properties for the FormFieldWrapper component.
+ * @param props.label - The label text for the form field.
+ * @param props.error - An error message to display for the form field.
+ * @param props.hint - A hint text to display for the form field.
+ * @param props.required - Indicates if the field is required, displaying an asterisk.
+ * @param props.showHint - Controls the visibility of the hint text.
+ * @param props.description - A descriptive text for the form field.
+ * @param props.disabled - If true, the field and its label will appear disabled.
+ * @param props.className - Additional CSS classes for the wrapper div.
+ * @param props.children - A render prop that provides the generated `id` and `describedBy` for the input element.
+ * @returns A React element wrapping the form field with accessibility and styling.
+ */
 const FormFieldWrapper = ({
   label,
   error,

@@ -4,21 +4,63 @@ import { cn } from "@/lib/utils";
 import FormFieldWrapper from "./FormFieldWrapper";
 import { BaseFormFieldProps } from "@/types";
 
+/**
+ * @interface RadioOption
+ * @description Defines the structure for a single radio button option.
+ */
 interface RadioOption {
+  /**
+   * @property value - The unique value associated with the radio option.
+   */
   value: string;
+  /**
+   * @property label - The display label for the radio option.
+   */
   label: string;
+  /**
+   * @property description - An optional description for the radio option.
+   */
   description?: string;
+  /**
+   * @property disabled - If true, the radio option will be disabled.
+   */
   disabled?: boolean;
 }
 
+/**
+ * @interface CustomRadioGroupProps
+ * @description Props for the CustomRadioGroup component, extending BaseFormFieldProps.
+ * @extends BaseFormFieldProps
+ */
 interface CustomRadioGroupProps extends BaseFormFieldProps {
+  /**
+   * @property options - An array of radio options to be displayed.
+   */
   options: RadioOption[];
+  /**
+   * @property value - The controlled value of the selected radio option.
+   */
   value?: string;
+  /**
+   * @property defaultValue - The initial value of the selected radio option when uncontrolled.
+   */
   defaultValue?: string;
+  /**
+   * @property onValueChange - Callback function invoked when the selected radio option changes.
+   */
   onValueChange?: (value: string) => void;
+  /**
+   * @property orientation - The orientation of the radio group. Defaults to "vertical".
+   */
   orientation?: "horizontal" | "vertical";
 }
 
+/**
+ * @function CustomRadioGroup
+ * @description A customizable radio group component that integrates with form field wrapper for consistent styling and error handling.
+ * @param props - The properties for the CustomRadioGroup component.
+ * @returns A React element representing the custom radio group.
+ */
 const CustomRadioGroup = ({ options, orientation = "vertical", ...props }: CustomRadioGroupProps) => (
   <FormFieldWrapper {...props}>
     {(id, describedBy) => (
