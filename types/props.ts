@@ -18,3 +18,7 @@ export interface BaseFormFieldProps {
 export interface FormFieldWrapperProps extends BaseFormFieldProps {
   children: (id: string, describedBy: string | undefined) => React.ReactNode;
 }
+
+export interface LoadingOverlayProps {
+  loading: boolean;
+};

@@ -6,6 +6,11 @@ import { NODE_ENV } from "@/config";
 export class AuthServerUtils {
   private static jwtService = new JwtService();
 
+  /**
+   * Retrieves user information from the 'user-info' cookie.
+   *
+   * @returns A promise that resolves to the user information or null if not found.
+   */
   static async getUserInfo(): Promise<AuthUser | null> {
     try {
       const cookieStore = await cookies();
@@ -20,6 +25,11 @@ export class AuthServerUtils {
     }
   }
 
+  /**
+   * Retrieves the authenticated user by verifying the JWT token from the 'auth-token' cookie.
+   *
+   * @returns A promise that resolves to the authenticated user or null if the token is invalid or not found.
+   */
   static async getAuthUser(): Promise<AuthUser | null> {
     try {
       const cookieStore = await cookies();
@@ -34,11 +44,23 @@ export class AuthServerUtils {
     }
   }
 
+  /**
+   * Checks if the user is authenticated.
+   *
+   * @returns A promise that resolves to true if the user is authenticated, false otherwise.
+   */
   static async isAuthenticated(): Promise<boolean> {
     const user = await this.getAuthUser();
     return user !== null;
   }
 
+  /**
+   * Sets the authentication cookies.
+   *
+   * @param token - The JWT token.
+   * @param userInfo - The user information.
+   * @returns A promise that resolves when the cookies are set.
+   */
   static async setAuthCookies(token: string, userInfo: AuthUser): Promise<void> {
     const cookieStore = await cookies();
 

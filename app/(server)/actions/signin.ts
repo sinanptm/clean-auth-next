@@ -7,6 +7,13 @@ import UserRepository from "@/lib/db/repositories/UserRepository";
 import JwtService from "@/lib/services/JwtService";
 import { AuthServerUtils } from "@/lib/utils/auth/server";
 
+/**
+ * Server action to handle user sign-in with Firebase access token.
+ * Verifies the Firebase token, creates/updates user in the database, generates a JWT, and sets authentication cookies.
+ *
+ * @param accessToken - The Firebase access token.
+ * @returns A JSON string of the user info if successful, or an error message.
+ */
 const signinAction = async (accessToken: string) => {
   await connectDB();
   const firebase = new FireBaseService();

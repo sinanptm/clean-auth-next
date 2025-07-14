@@ -10,6 +10,12 @@ type TokenPayLoad = {
 export default class JwtService {
   private secret = new TextEncoder().encode(TOKEN_SECRET);
 
+  /**
+   * Creates a new JWT token.
+   *
+   * @param payload - The payload to include in the token.
+   * @returns A promise that resolves to the JWT token.
+   */
   async createToken({ name, id, profile }: TokenPayLoad): Promise<string> {
     const jwt = new SignJWT({ name, id, profile })
       .setProtectedHeader({ alg: "HS256" })
@@ -19,6 +25,13 @@ export default class JwtService {
     return await jwt.sign(this.secret);
   }
 
+  /**
+   * Verifies a JWT token.
+   *
+   * @param token - The JWT token to verify.
+   * @returns A promise that resolves to the decoded token payload.
+   * @throws An error if the token is expired or invalid.
+   */
   async verifyToken(token: string): Promise<TokenPayLoad> {
     try {
       const { payload } = await jwtVerify(token, this.secret);

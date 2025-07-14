@@ -3,10 +3,7 @@
 import { memo, useEffect } from "react";
 import useIsLoading from "@/hooks/store/useLoading";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface LoadingOverlayProps {
-  loading?: boolean;
-}
+import { LoadingOverlayProps } from "@/types";
 
 const LoadingOverlay = ({ loading = false }: LoadingOverlayProps) => {
   const globalLoading = useIsLoading((state) => state.isLoading);

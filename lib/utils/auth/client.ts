@@ -4,6 +4,11 @@ import { AuthUser } from "@/types";
 
 export class AuthClientUtils {
   // Get user info from cookies (client-side)
+  /**
+   * Retrieves user information from the 'user-info' cookie on the client-side.
+   *
+   * @returns The user information or null if not found.
+   */
   static getUserInfo(): AuthUser | null {
     if (typeof window === "undefined") return null;
 
@@ -21,11 +26,19 @@ export class AuthClientUtils {
   }
 
   // Check if user is authenticated (client-side)
+  /**
+   * Checks if the user is authenticated on the client-side.
+   *
+   * @returns True if the user is authenticated, false otherwise.
+   */
   static isAuthenticated(): boolean {
     return this.getUserInfo() !== null;
   }
 
   // Clear all auth cookies (client-side)
+  /**
+   * Clears all authentication cookies on the client-side.
+   */
   static clearAuthCookies(): void {
     if (typeof window === "undefined") return;
 

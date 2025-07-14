@@ -10,6 +10,11 @@ const createAuthStore = create<UserAuthState>((set, get) => ({
   user: null,
   isAuthModelOpen: false,
 
+  /**
+   * Sets the authenticated user and updates authentication status.
+   *
+   * @param user - The authenticated user object, or null to clear the user.
+   */
   setUser: (user) => {
     if (user) {
       set({ user, isAuthenticated: true, isAuthModelOpen: false });
@@ -18,15 +23,27 @@ const createAuthStore = create<UserAuthState>((set, get) => ({
     }
   },
 
+  /**
+   * Logs out the user by clearing user information and authentication status.
+   */
   logout: () => {
     set({ user: null, isAuthenticated: false });
   },
 
+  /**
+   * Toggles the authentication model's open state.
+   */
   setAuthModelOpen: () => {
     set({ isAuthModelOpen: !get().isAuthModelOpen });
   },
 }));
 
+/**
+ * Custom hook for managing authentication state using Zustand.
+ * Hydrates the authentication state from client-side cookies on initial load.
+ *
+ * @returns An object containing authentication state and actions, including `isHydrated`.
+ */
 const useAuth = () => {
   const [isHydrated, setIsHydrated] = useState(false);
   const store = createAuthStore();

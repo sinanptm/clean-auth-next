@@ -2,7 +2,7 @@ import { mainFont } from "@/lib/fonts";
 import { WrapperProps } from "@/types";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import LoadingOverlay from "@/components/LoadingOverlay";
+import LoadingOverlay from "@/components/common/LoadingOverlay";
 import Navbar from "@/components/layout/Navbar";
 import ThemeProvider from "@/components/layout/ThemeProvider";
 import SigninDialog from "@/components/dialogs/SigninDialog";
