@@ -4,7 +4,7 @@ import { memo, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
 import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, getAuth } from "firebase/auth";
-import useOAuthSignIn from "@/hooks/api/auth/useOAuthSignIn";
+import useOAuthSignIn from "@/hooks/api/useAuthSignIn";
 import { toast } from "sonner";
 import Image from "next/image";
 

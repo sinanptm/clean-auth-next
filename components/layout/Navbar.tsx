@@ -4,16 +4,17 @@ import { memo, useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import useAuthUser from "@/hooks/store/auth/useAuthUser";
-import useLogoutUser from "@/hooks/api/auth/useLogout";
+import useLogoutUser from "@/hooks/api/useLogout";
 import LogoutConfirmDialog from "@/components/dialogs/LogoutConfirmDialog";
 import { APP_NAME } from "@/constants";
 import { UserRole } from "@/types";
 import dynamic from "next/dynamic";
-const ThemeButton = dynamic(() => import("@/components/ThemeButton"), { ssr: false });
+
+const ThemeButton = dynamic(() => import("@/components/common/ThemeButton"), { ssr: false });
 
 const Navbar = () => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
-  const { isAuthenticated: isUserAuthenticated } = useAuthUser();
+  const { isAuthenticated: isUserAuthenticated, setAuthModelOpen } = useAuthUser();
   const { mutate: logoutUser, isPending: isUserLogoutPending } = useLogoutUser();
 
   const handleLogoutClick = useCallback(() => {
@@ -46,16 +47,9 @@ const Navbar = () => {
               </Button>
             ) : (
               <>
-                <Link href="/auth" prefetch={false}>
-                    <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
                     Sign In
                   </Button>
-                </Link>
-                <Link href="/auth/signup" prefetch={false}>
-                    <Button variant="outline" size="sm">
-                    Sign Up
-                  </Button>
-                </Link>
               </>
             )}
           </div>

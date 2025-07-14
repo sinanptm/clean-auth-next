@@ -8,10 +8,11 @@ import { getItemLocalStorage } from "@/lib/utils";
 import { UserAuthState } from "@/types";
 
 // This is just the store creation without any hydration logic
-const createAuthStore = create<UserAuthState>((set) => ({
+const createAuthStore = create<UserAuthState>((set, get) => ({
   isAuthenticated: false,
   token: null,
   user: null,
+  isAuthModelOpen: false,
 
   setToken: (token) => {
     set({ token, isAuthenticated: true });
@@ -28,6 +29,10 @@ const createAuthStore = create<UserAuthState>((set) => ({
   logout: () => {
     set({ token: null, user: null, isAuthenticated: false });
     clearAuthData(UserRole.User);
+  },
+
+  setAuthModelOpen: () => {
+    set({ isAuthModelOpen: !get().isAuthModelOpen });
   },
 
   // Method to initialize the store with values from localStorage

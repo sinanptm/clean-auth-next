@@ -5,11 +5,9 @@ import { MessageResponse } from "@/types";
 import { DeleteRoutes } from "@/types/api/DeleteRoutes";
 import useAuthUser from "@/hooks/store/auth/useAuthUser";
 import { onError } from "@/lib/utils";
-import { useRouter } from "next/navigation";
 
 const useLogout = () => {
   const { logout } = useAuthUser();
-  const router = useRouter();
   return useMutation({
     mutationFn: async () => {
       const response = await DELETE<MessageResponse>({
@@ -19,7 +17,6 @@ const useLogout = () => {
     },
     onSuccess: ({ message }) => {
       logout();
-      router.push("/auth");
       toast.success(message);
     },
     onError,

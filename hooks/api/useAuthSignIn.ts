@@ -8,22 +8,20 @@ import type { TokenUserResponse } from "@/types";
 import { onError } from "@/lib/utils";
 import useAuthUser from "@/hooks/store/auth/useAuthUser";
 import useLoading from "@/hooks/store/useLoading";
-import { useRouter } from "next/navigation";
 
-interface OAuthData {
+interface AuthData {
   name: string;
   email: string;
   accessToken: string;
   profile: string | null;
 }
 
-const useOAuthSignIn = () => {
-  const { setToken, setUser } = useAuthUser();
+const useAuthSignIn = () => {
+  const { setToken, setUser, setAuthModelOpen } = useAuthUser();
   const { setLoading } = useLoading();
-  const router = useRouter();
 
   return useMutation({
-    mutationFn: async (data: OAuthData) => {
+    mutationFn: async (data: AuthData) => {
       setLoading(true);
       const response = await POST<TokenUserResponse>({
         route: PostRoutes.OAuthSignIn,
@@ -35,19 +33,17 @@ const useOAuthSignIn = () => {
       toast.success(message, { icon: "🎉" });
       setToken(accessToken);
       setUser(user);
-
-      setTimeout(() => {
-        router.push("/");
-        setLoading(false);
-      }, 1000);
     },
     onError: (e) => {
       setTimeout(() => {
         onError(e);
         setLoading(false);
-      }, 400);
+      }, 0);
     },
+    onSettled: () => {
+      setAuthModelOpen();
+    }
   });
 };
 
-export default useOAuthSignIn;
+export default useAuthSignIn;

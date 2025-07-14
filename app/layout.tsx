@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import LoadingOverlay from "@/components/LoadingOverlay";
 import Navbar from "@/components/layout/Navbar";
 import ThemeProvider from "@/components/layout/ThemeProvider";
+import SigninDialog from "@/components/dialogs/SigninDialog";
 
 export { metadata } from "./metadata";
 
@@ -24,6 +25,7 @@ const RootLayout = ({ children }: WrapperProps) => {
             <main>{children}</main>
             <Toaster />
             <LoadingOverlay />
+            <SigninDialog />
           </ThemeProvider>
         </QueryProvider>
       </body>
