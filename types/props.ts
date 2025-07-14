@@ -70,5 +70,5 @@ export interface LoadingOverlayProps {
   /**
    * @property loading - If true, the loading overlay will be visible.
    */
-  loading: boolean;
-};
+  loading?: boolean;
+}

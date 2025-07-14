@@ -43,7 +43,7 @@ const signinAction = async (accessToken: string) => {
 
     const token = await jwtService.createToken({
       name: user.name!,
-      id: user._id!,
+      id: user._id?.toString()!,
       profile: user.profile,
     });
 

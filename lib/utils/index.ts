@@ -3,7 +3,6 @@ import { twMerge } from "tailwind-merge";
 
 export * from "./server";
 
-
 /**
  * A utility function to merge Tailwind CSS classes.
  *

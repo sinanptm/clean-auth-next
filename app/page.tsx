@@ -4,7 +4,6 @@ import useAuth from "@/hooks/store/auth/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 
-
 const Page = () => {
   const { isAuthenticated, isHydrated, setAuthModelOpen } = useAuth();
 
