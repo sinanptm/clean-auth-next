@@ -2,7 +2,7 @@ import * as admin from "firebase-admin";
 import { FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY, FIREBASE_PROJECT_ID } from "@/config";
 import { OAuthUser } from "@/types";
 
-export default class OAuhService {
+export default class FireBaseService {
   private firebaseAdminApp: admin.app.App;
   private firebaseAuth: admin.auth.Auth;
 

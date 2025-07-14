@@ -7,7 +7,7 @@ type TokenPayLoad = {
   profile?: string;
 }
 
-export default class TokenService {
+export default class JwtService {
   private signToken(payload: object, secret: string, options: SignOptions): string {
     return sign(payload, secret, { expiresIn: options.expiresIn });
   }
