@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, getAuth } from "firebase/auth";
@@ -11,13 +11,16 @@ import useAuth from "@/hooks/store/auth/useAuth";
 import signinAction from "@/app/(server)/actions/signin";
 // for initializing firebase config;
 import {} from "@/config";
+import LoadingOverlay from "../common/LoadingOverlay";
 
 const SignInDialog = () => {
   const { isAuthModelOpen, setAuthModelOpen, isHydrated, setUser } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const auth = getAuth();
 
   const handleOAuthSignIn = async (provider: GithubAuthProvider | GoogleAuthProvider) => {
+    setIsLoading(true);
     try {
       const result = await signInWithPopup(auth, provider);
 
@@ -32,12 +35,15 @@ const SignInDialog = () => {
 
       if (res.data) {
         setUser(JSON.parse(res.data)!);
+        toast.success("Signed in successfully!");
       } else {
         toast.error(res.error);
       }
     } catch (error) {
       console.log(error);
       toast.error("Unknown error occurred :");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -58,6 +64,7 @@ const SignInDialog = () => {
             type="button"
             onClick={() => handleOAuthSignIn(new GithubAuthProvider())}
             className={`flex items-center gap-2 h-11`}
+            disabled={isLoading}
           >
             <Github size={18} />
             <span>Continue with GitHub</span>
@@ -68,12 +75,15 @@ const SignInDialog = () => {
             type="button"
             onClick={() => handleOAuthSignIn(new GoogleAuthProvider())}
             className="flex items-center gap-2 h-11"
+            disabled={isLoading}
           >
             <Image alt="Google" src="/assets/google.svg" width={18} height={18} />
             <span>Continue with Google</span>
           </Button>
         </div>
       </DialogContent>
+
+      <LoadingOverlay loading={isLoading} />
     </Dialog>
   );
 };
