@@ -14,6 +14,7 @@ interface CustomTextAreaProps extends BaseFormFieldProps, React.TextareaHTMLAttr
   /**
    * @property resize - If true, allows the textarea to be resized by the user. Defaults to true.
    */
+  resize?: boolean;
 }
 
 /**

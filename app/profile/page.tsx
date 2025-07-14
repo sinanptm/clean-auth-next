@@ -2,6 +2,8 @@ import { AuthServerUtils } from "@/lib/utils/auth/server";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+export const dynamic = "force-dynamic";
+
 const ProfilePage = async () => {
   const user = await AuthServerUtils.getAuthUser();
 
