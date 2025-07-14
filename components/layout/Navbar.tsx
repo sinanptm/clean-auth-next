@@ -17,8 +17,6 @@ const Navbar = () => {
   const [isLoading, setLoading] = useState(false);
   const { isAuthenticated, setAuthModelOpen, user, logout } = useAuthUser();
 
-  console.log("isAuthenticated", isAuthenticated);
-  console.log("user", user);
 
   const handleLogoutClick = useCallback(() => {
     setShowLogoutDialog(true);

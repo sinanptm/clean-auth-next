@@ -1,4 +1,4 @@
-import { JwtPayload, TokenExpiredError, sign, verify, SignOptions } from "jsonwebtoken";
+import { SignJWT, jwtVerify, errors } from 'jose';
 import { TOKEN_SECRET } from "@/config";
 
 type TokenPayLoad = {
@@ -8,28 +8,30 @@ type TokenPayLoad = {
 }
 
 export default class JwtService {
-  private signToken(payload: object, secret: string, options: SignOptions): string {
-    return sign(payload, secret, { expiresIn: options.expiresIn });
+  private secret = new TextEncoder().encode(TOKEN_SECRET);
+
+  async createToken({ email, id, profile }: TokenPayLoad): Promise<string> {
+    const jwt = new SignJWT({ email, id, profile })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setIssuedAt()
+      .setExpirationTime('7d');
+
+    return await jwt.sign(this.secret);
   }
-  private verify(token: string, secret: string): JwtPayload {
+
+  async verifyToken(token: string): Promise<TokenPayLoad> {
     try {
-      return verify(token, secret) as JwtPayload;
+      const { payload } = await jwtVerify(token, this.secret);
+      return {
+        email: payload.email as string,
+        id: payload.id as string,
+        profile: payload.profile as string | undefined
+      };
     } catch (error) {
-      if (error instanceof TokenExpiredError) {
+      if (error instanceof errors.JWTExpired) {
         throw new Error("Token expired");
       }
       throw new Error("Invalid token");
     }
-  }
-
-  createToken({ email, id }: TokenPayLoad): string {
-    return this.signToken({ email, id }, TOKEN_SECRET!, {
-      expiresIn: "7d",
-    });
-  }
-
-  verifyToken(token: string): TokenPayLoad {
-    const { email, id } = this.verify(token, TOKEN_SECRET!);
-    return { email, id };
   }
 }
