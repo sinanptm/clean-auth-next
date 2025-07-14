@@ -7,7 +7,7 @@ export interface IUserProfile {
   readonly profile?: string;
 }
 
-export default interface IUser extends IUserProfile {
+export interface IUser extends IUserProfile {
   readonly isBlocked?: boolean;
   readonly password?: string;
   readonly createdAt?: DateString;
@@ -17,3 +17,7 @@ export default interface IUser extends IUserProfile {
 
 export type UserProfilePromise = Promise<IUserProfile | null>;
 export type UserPromise = Promise<IUser | null>;
+
+export interface AuthUser extends Pick<IUser, "email" | "name" | "profile"> {
+  id: string;
+};

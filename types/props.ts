@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AuthUser } from "./state";
+import { AuthUser } from "./user";
 
 /**
  * @interface WrapperProps

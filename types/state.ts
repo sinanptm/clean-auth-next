@@ -1,8 +1,5 @@
-export type AuthUser = {
-  name: string;
-  id: string;
-  profile?: string;
-};
+import { AuthUser } from "./user";
+
 export interface UserAuthState {
   isAuthenticated: boolean;
   user: AuthUser | null;

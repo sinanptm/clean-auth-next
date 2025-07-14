@@ -45,12 +45,13 @@ const signinAction = async (accessToken: string) => {
       throw new Error("User is missing required fields (email or id)");
     }
 
-    const token = await jwtService.createToken({ name: user.name!, id: user._id.toString() });
+    const token = await jwtService.createToken({ name: user.name!, id: user._id.toString(), email: user.email, profile: user.profile });
 
     const userInfo = {
       id: user._id!,
       name: user.name!,
       profile: user.profile!,
+      email: user.email
     };
 
     await AuthServerUtils.setAuthCookies(token, userInfo);

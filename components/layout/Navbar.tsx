@@ -11,6 +11,7 @@ import dynamic from "next/dynamic";
 import logoutAction from "@/app/(server)/actions/logout";
 import NavMenu from "./NavMenu";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const ThemeButton = dynamic(() => import("@/components/common/ThemeButton"), { ssr: false });
 
@@ -18,6 +19,7 @@ const Navbar = () => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const { isAuthenticated, setAuthModelOpen, logout, user } = useAuth();
+  const router = useRouter();
 
   const handleLogoutClick = useCallback(() => {
     setShowLogoutDialog(true);
@@ -30,6 +32,7 @@ const Navbar = () => {
       if (isAuthenticated) {
         await logoutAction();
         logout();
+        router.push("/");
         toast.success("Logged out successfully!", { id: toastId });
       }
       setShowLogoutDialog(false);

@@ -1,8 +1,8 @@
 import { App, initializeApp, getApps, cert } from "firebase-admin/app";
 import { Auth, getAuth } from "firebase-admin/auth"; // Correct import for Firebase Admin Auth
-import { OAuthUser } from "@/types";
 
 import { FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY, FIREBASE_PROJECT_ID } from "@/config";
+import { AuthUser } from "@/types";
 
 export default class FireBaseService {
   private firebaseAdminApp: App;
@@ -31,11 +31,11 @@ export default class FireBaseService {
   }
 
   /**
-   * Verifies a Firebase ID token and returns a simplified OAuthUser object.
+   * Verifies a Firebase ID token and returns a simplified AuthUser object.
    * @param accessToken The Firebase ID token to verify.
-   * @returns A Promise that resolves to an OAuthUser object or null if verification fails.
+   * @returns A Promise that resolves to an AuthUser object or null if verification fails.
    */
-  async verifyAccessToken(accessToken: string): Promise<OAuthUser | null> {
+  async verifyAccessToken(accessToken: string): Promise<AuthUser | null> {
     try {
       const decodedToken = await this.firebaseAuth.verifyIdToken(accessToken);
 

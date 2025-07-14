@@ -1,10 +1,9 @@
 import { SignJWT, jwtVerify, errors } from "jose";
 import { TOKEN_SECRET } from "@/config";
+import { AuthUser } from "@/types";
 
-type TokenPayLoad = {
-  name: string;
+interface TokenPayLoad extends AuthUser {
   id: string;
-  profile?: string;
 };
 
 export default class JwtService {
@@ -16,8 +15,8 @@ export default class JwtService {
    * @param payload - The payload to include in the token.
    * @returns A promise that resolves to the JWT token.
    */
-  async createToken({ name, id, profile }: TokenPayLoad): Promise<string> {
-    const jwt = new SignJWT({ name, id, profile })
+  async createToken({ name, id, profile, email }: TokenPayLoad): Promise<string> {
+    const jwt = new SignJWT({ name, id, profile, email, })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
       .setExpirationTime("7d");
@@ -39,6 +38,7 @@ export default class JwtService {
         name: payload.name as string,
         id: payload.id as string,
         profile: payload.profile as string | undefined,
+        email: payload.email as string | undefined
       };
     } catch (error) {
       if (error instanceof errors.JWTExpired) {

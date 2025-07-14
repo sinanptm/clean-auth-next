@@ -8,7 +8,6 @@ import { FormFieldWrapperProps } from "@/types";
 /**
  * @function FormFieldWrapper
  * @description A wrapper component for form fields that provides consistent labeling, error display, hints, and accessibility features.
- * @param props - The properties for the FormFieldWrapper component.
  * @param props.label - The label text for the form field.
  * @param props.error - An error message to display for the form field.
  * @param props.hint - A hint text to display for the form field.

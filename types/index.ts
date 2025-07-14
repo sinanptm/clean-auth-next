@@ -13,13 +13,3 @@ export enum Tokens {
 }
 
 export type DateString = Date | string;
-export interface IUser {
-  readonly _id?: string;
-  readonly name?: string;
-  readonly email?: string;
-  readonly isBlocked?: boolean;
-  readonly createdAt?: DateString;
-  readonly profile?: string;
-}
-
-export type OAuthUser = Pick<IUser, "profile" | "name" | "email">;
