@@ -41,11 +41,11 @@ const signinAction = async (accessToken: string) => {
       throw new Error("Your account has been blocked. Please contact support for assistance.");
     }
 
-    const token = await jwtService.createToken({
-      name: user.name!,
-      id: user._id?.toString()!,
-      profile: user.profile,
-    });
+    if (!user.name || !user._id) {
+      throw new Error("User is missing required fields (email or id)");
+    }
+
+    const token = await jwtService.createToken({ name: user.name!, id: user._id });
 
     const userInfo = {
       id: user._id!,
