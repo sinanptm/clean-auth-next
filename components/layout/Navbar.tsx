@@ -1,36 +1,40 @@
 "use client";
 
-import { memo, useCallback, useMemo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import useAuthUser from "@/hooks/store/auth/useAuthUser";
-import useLogoutUser from "@/hooks/api/useLogout";
 import LogoutConfirmDialog from "@/components/dialogs/LogoutConfirmDialog";
 import { APP_NAME } from "@/constants";
 import { UserRole } from "@/types";
 import dynamic from "next/dynamic";
+import logoutAction from "@/app/(server)/actions/logout";
 
 const ThemeButton = dynamic(() => import("@/components/common/ThemeButton"), { ssr: false });
 
 const Navbar = () => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const { isAuthenticated: isUserAuthenticated, setAuthModelOpen } = useAuthUser();
-  const { mutate: logoutUser, isPending: isUserLogoutPending } = useLogoutUser();
 
   const handleLogoutClick = useCallback(() => {
     setShowLogoutDialog(true);
   }, []);
 
-  const handleLogoutConfirm = useCallback(() => {
-    if (isUserAuthenticated) {
-      logoutUser();
+  const handleLogoutConfirm = useCallback(async () => {
+    try {
+      setLoading(true);
+      if (isUserAuthenticated) {
+        await logoutAction();
+      }
+      setShowLogoutDialog(false);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-    setShowLogoutDialog(false);
-  }, [isUserAuthenticated, logoutUser]);
+  }, [isUserAuthenticated]);
 
-  const isLogoutPending = useMemo(() => {
-    return isUserLogoutPending;
-  }, [isUserLogoutPending]);
 
   return (
     <>
@@ -61,7 +65,7 @@ const Navbar = () => {
         onOpenChange={setShowLogoutDialog}
         onConfirm={handleLogoutConfirm}
         userType={UserRole.User}
-        isLoading={isLogoutPending}
+        isLoading={isLoading}
       />
     </>
   );

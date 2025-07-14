@@ -1,4 +1,4 @@
-"user server";
+"use server";
 
 import { tryCatch } from "@/lib/utils";
 import FireBaseService from "@/lib/services/FireBaseService";
@@ -6,16 +6,20 @@ import connectDB from "@/lib/db/connectDb";
 import UserRepository from "@/lib/db/repositories/UserRepository";
 import JwtService from "@/lib/services/JwtService";
 
-const firebase = new FireBaseService();
-const userRepository = new UserRepository();
-const jwtService = new JwtService();
 
-connectDB();
 
 const signinAction = async (accessToken: string) => {
+    await connectDB();
+    const firebase = new FireBaseService();
+    const userRepository = new UserRepository();
+    const jwtService = new JwtService();
+
+
     return await tryCatch(async () => {
         // Replace with your actual sign-in logic
         const firebaseUser = await firebase.verifyAccessToken(accessToken);
+
+        console.log(firebaseUser);
 
         if (!firebaseUser) {
             throw new Error("Invalid Firebase token");

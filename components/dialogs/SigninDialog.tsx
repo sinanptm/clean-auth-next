@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useCallback } from "react";
+import { memo } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, getAuth } from "firebase/auth";
@@ -8,40 +8,39 @@ import { Github } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import useAuthUser from "@/hooks/store/auth/useAuthUser";
-import useAuthSignIn from "@/hooks/api/useAuthSignIn";
+import signinAction from "@/app/(server)/actions/signin";
+// for initializing firebase config;
+import { } from "@/config";
 
 const SignInDialog = () => {
     const { isAuthModelOpen, setAuthModelOpen, isHydrated } = useAuthUser();
 
     const auth = getAuth();
-    const { mutate } = useAuthSignIn();
 
-    const handleOAuthSignIn = useCallback(
-        async (provider: GithubAuthProvider | GoogleAuthProvider) => {
-            try {
-                const result = await signInWithPopup(auth, provider);
+    const handleOAuthSignIn = async (provider: GithubAuthProvider | GoogleAuthProvider) => {
+        try {
+            const result = await signInWithPopup(auth, provider);
 
-                if (!result.user.email) {
-                    toast.error("Unable to get email from provider");
-                    return;
-                }
-
-                const firebaseIdToken = await result.user.getIdToken();
-
-                const serverPayload = {
-                    name: result.user.displayName || "User",
-                    email: result.user.email,
-                    profile: result.user.photoURL,
-                    accessToken: firebaseIdToken,
-                };
-
-                mutate(serverPayload);
-            } catch (error) {
-                console.log(error);
+            if (!result.user.email) {
+                toast.error("Unable to get email from provider");
+                return;
             }
-        },
-        [mutate, auth],
-    );
+
+            const firebaseIdToken = await result.user.getIdToken();
+
+            const serverPayload = {
+                name: result.user.displayName || "User",
+                email: result.user.email,
+                profile: result.user.photoURL,
+                accessToken: firebaseIdToken,
+            };
+
+
+            await signinAction(firebaseIdToken);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     if (!isHydrated || !isAuthModelOpen) return;
 

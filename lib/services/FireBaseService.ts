@@ -34,8 +34,9 @@ export default class FireBaseService {
         name: decodedToken.name,
         profile: decodedToken.picture,
       };
-    } catch (error: any) {
-      throw new Error("Firebase token verification via Admin SDK failed:");
+      //eslint-disable-next-line
+    } catch (error: any) {      
+      throw new Error("Firebase token verification via Admin SDK failed:", error.message || "Unknown error");
     }
   }
 }

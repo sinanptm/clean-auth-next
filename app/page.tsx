@@ -1,6 +1,5 @@
 "use client";
 
-import Profile from "@/components/user/Profile";
 import useAuthUser from "@/hooks/store/auth/useAuthUser";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
@@ -31,7 +30,6 @@ const Page = () => {
           </Button>
         </div>
       )}
-      {isAuthenticated && <Profile />}
     </div>
   );
 };

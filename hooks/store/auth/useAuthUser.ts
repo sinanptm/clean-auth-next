@@ -1,10 +1,9 @@
 "use client";
 
 import { create } from "zustand";
-import { clearAuthData, setItemLocalStorage } from "@/lib/utils";
-import { Tokens, UserRole } from "@/types";
+import { setItemLocalStorage, getItemLocalStorage } from "@/lib/utils/index";
+import { Tokens } from "@/types";
 import { useEffect, useState } from "react";
-import { getItemLocalStorage } from "@/lib/utils";
 import { UserAuthState } from "@/types";
 
 // This is just the store creation without any hydration logic
@@ -28,7 +27,6 @@ const createAuthStore = create<UserAuthState>((set, get) => ({
 
   logout: () => {
     set({ token: null, user: null, isAuthenticated: false });
-    clearAuthData(UserRole.User);
   },
 
   setAuthModelOpen: () => {
