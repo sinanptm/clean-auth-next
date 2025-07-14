@@ -5,7 +5,7 @@ import useIsLoading from "@/hooks/store/useLoading";
 import { motion, AnimatePresence } from "framer-motion";
 import { LoadingOverlayProps } from "@/types";
 
-const LoadingOverlay = ({ loading = false }: LoadingOverlayProps) => {
+const LoadingOverlay = ({ loading = false, children }: LoadingOverlayProps) => {
   const globalLoading = useIsLoading((state) => state.isLoading);
   const isLoading = globalLoading || loading;
 
@@ -15,7 +15,6 @@ const LoadingOverlay = ({ loading = false }: LoadingOverlayProps) => {
     } else {
       document.body.style.overflow = "unset";
     }
-
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -43,24 +42,26 @@ const LoadingOverlay = ({ loading = false }: LoadingOverlayProps) => {
             aria-live="polite"
             aria-label="Loading..."
           >
-            <div className="flex space-x-3">
-              {[0, 1, 2, 3, 4].map((index) => (
-                <motion.div
-                  key={index}
-                  className="w-4 h-4 bg-white rounded-full"
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.3, 1, 0.3],
-                  }}
-                  transition={{
-                    duration: 1.2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    delay: index * 0.1,
-                    ease: "easeInOut",
-                  }}
-                />
-              ))}
-            </div>
+            {children || (
+              <div className="flex space-x-3">
+                {[0, 1, 2, 3, 4].map((index) => (
+                  <motion.div
+                    key={index}
+                    className="w-4 h-4 bg-white rounded-full"
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                      duration: 1.2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      delay: index * 0.1,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}

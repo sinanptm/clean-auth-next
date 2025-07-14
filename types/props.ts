@@ -62,13 +62,7 @@ export interface FormFieldWrapperProps extends BaseFormFieldProps {
   children: (id: string, describedBy: string | undefined) => React.ReactNode;
 }
 
-/**
- * @interface LoadingOverlayProps
- * @description Properties for a loading overlay component.
- */
 export interface LoadingOverlayProps {
-  /**
-   * @property loading - If true, the loading overlay will be visible.
-   */
   loading?: boolean;
+  children?: React.ReactNode;
 }
