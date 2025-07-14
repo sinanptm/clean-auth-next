@@ -9,6 +9,8 @@ import { APP_NAME } from "@/constants";
 import { UserRole } from "@/types";
 import dynamic from "next/dynamic";
 import logoutAction from "@/app/(server)/actions/logout";
+import NavMenu from "./NavMenu";
+import { toast } from "sonner";
 
 const ThemeButton = dynamic(() => import("@/components/common/ThemeButton"), { ssr: false });
 
@@ -22,15 +24,18 @@ const Navbar = () => {
   }, []);
 
   const handleLogoutConfirm = useCallback(async () => {
+    setLoading(true);
+    const toastId = toast.loading("Logging out...");
     try {
-      setLoading(true);
       if (isAuthenticated) {
         await logoutAction();
         logout();
+        toast.success("Logged out successfully!", { id: toastId });
       }
       setShowLogoutDialog(false);
     } catch (error) {
       console.log(error);
+      toast.error("Logout failed.", { id: toastId });
     } finally {
       setLoading(false);
     }
@@ -44,18 +49,18 @@ const Navbar = () => {
             {APP_NAME}
           </Link>
           <div className="flex items-center space-x-4">
-            <ThemeButton />
             {isAuthenticated ? (
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-muted-foreground">Welcome, {user?.name}</span>
-                <Button variant="outline" size="sm" onClick={handleLogoutClick}>
-                  Logout
-                </Button>
-              </div>
+              <NavMenu
+                user={user!}
+                onSignOut={handleLogoutClick}
+              />
             ) : (
-              <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
-                Sign In
-              </Button>
+                <>
+                  <ThemeButton />
+                  <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
+                    Sign In
+                  </Button>
+                </>
             )}
           </div>
         </div>

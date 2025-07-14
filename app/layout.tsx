@@ -16,7 +16,11 @@ const RootLayout = ({ children }: WrapperProps) => {
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Navbar />
           {children}
-          <Toaster />
+          <Toaster
+            position="top-right"
+            closeButton
+            richColors
+          />
           <LoadingOverlay />
           <SigninDialog />
         </ThemeProvider>

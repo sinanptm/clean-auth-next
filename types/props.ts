@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { AuthUser } from "./state";
 
 /**
  * @interface WrapperProps
@@ -66,3 +67,9 @@ export interface LoadingOverlayProps {
   loading?: boolean;
   children?: React.ReactNode;
 }
+
+
+export interface NavMenuProps {
+  user?: AuthUser;
+  onSignOut: () => void;
+} 
