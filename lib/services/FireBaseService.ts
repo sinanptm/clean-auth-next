@@ -15,14 +15,16 @@ export default class FireBaseService {
           credential: cert({
             clientEmail: FIREBASE_CLIENT_EMAIL,
             privateKey: FIREBASE_PRIVATE_KEY,
-            projectId: FIREBASE_PROJECT_ID
+            projectId: FIREBASE_PROJECT_ID,
           }),
         });
       } catch (error) {
-        throw new Error(`Firebase Admin SDK initialization failed: ${error instanceof Error ? error.message : error}`);
+        throw new Error(
+          `Firebase Admin SDK initialization failed: ${error instanceof Error ? error.message : error}`,
+        );
       }
     } else {
-      this.firebaseAdminApp = getApps()[0]; 
+      this.firebaseAdminApp = getApps()[0];
     }
 
     this.firebaseAuth = getAuth(this.firebaseAdminApp);
@@ -42,8 +44,11 @@ export default class FireBaseService {
         name: decodedToken.name,
         profile: decodedToken.picture,
       };
+      //eslint-disable-next-line
     } catch (error: any) {
-      throw new Error(`Firebase token verification via Admin SDK failed: ${error.message || "Unknown error"}`);
+      throw new Error(
+        `Firebase token verification via Admin SDK failed: ${error.message || "Unknown error"}`,
+      );
     }
   }
 }

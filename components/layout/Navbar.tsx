@@ -3,7 +3,7 @@
 import { memo, useCallback, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import useAuthUser from "@/hooks/store/auth/useAuthUser";
+import useAuth from "@/hooks/store/auth/useAuth";
 import LogoutConfirmDialog from "@/components/dialogs/LogoutConfirmDialog";
 import { APP_NAME } from "@/constants";
 import { UserRole } from "@/types";
@@ -15,8 +15,7 @@ const ThemeButton = dynamic(() => import("@/components/common/ThemeButton"), { s
 const Navbar = () => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const { isAuthenticated, setAuthModelOpen, user, logout } = useAuthUser();
-
+  const { isAuthenticated, setAuthModelOpen, logout, user } = useAuth();
 
   const handleLogoutClick = useCallback(() => {
     setShowLogoutDialog(true);
@@ -35,8 +34,7 @@ const Navbar = () => {
     } finally {
       setLoading(false);
     }
-  }, [isAuthenticated]);
-
+  }, [isAuthenticated, logout]);
 
   return (
     <>
@@ -48,15 +46,16 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <ThemeButton />
             {isAuthenticated ? (
-              <Button variant="outline" size="sm" onClick={handleLogoutClick}>
-                Logout
-              </Button>
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-muted-foreground">Welcome, {user?.name}</span>
+                <Button variant="outline" size="sm" onClick={handleLogoutClick}>
+                  Logout
+                </Button>
+              </div>
             ) : (
-              <>
-                  <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
-                    Sign In
-                  </Button>
-              </>
+              <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
+                Sign In
+              </Button>
             )}
           </div>
         </div>

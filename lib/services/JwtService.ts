@@ -1,20 +1,20 @@
-import { SignJWT, jwtVerify, errors } from 'jose';
+import { SignJWT, jwtVerify, errors } from "jose";
 import { TOKEN_SECRET } from "@/config";
 
 type TokenPayLoad = {
-  email: string;
+  name: string;
   id: string;
   profile?: string;
-}
+};
 
 export default class JwtService {
   private secret = new TextEncoder().encode(TOKEN_SECRET);
 
-  async createToken({ email, id, profile }: TokenPayLoad): Promise<string> {
-    const jwt = new SignJWT({ email, id, profile })
-      .setProtectedHeader({ alg: 'HS256' })
+  async createToken({ name, id, profile }: TokenPayLoad): Promise<string> {
+    const jwt = new SignJWT({ name, id, profile })
+      .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
-      .setExpirationTime('7d');
+      .setExpirationTime("7d");
 
     return await jwt.sign(this.secret);
   }
@@ -23,9 +23,9 @@ export default class JwtService {
     try {
       const { payload } = await jwtVerify(token, this.secret);
       return {
-        email: payload.email as string,
+        name: payload.name as string,
         id: payload.id as string,
-        profile: payload.profile as string | undefined
+        profile: payload.profile as string | undefined,
       };
     } catch (error) {
       if (error instanceof errors.JWTExpired) {

@@ -1,11 +1,11 @@
 "use client";
 
-import useAuthUser from "@/hooks/store/auth/useAuthUser";
+import useAuth from "@/hooks/store/auth/useAuth";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 
 const Page = () => {
-  const { isAuthenticated, isHydrated, setAuthModelOpen } = useAuthUser();
+  const { isAuthenticated, isHydrated, setAuthModelOpen } = useAuth();
 
   if (!isHydrated) {
     return (
@@ -21,10 +21,7 @@ const Page = () => {
     <div className="flex flex-col items-center min-h-screen space-y-5 justify-center gap-4">
       <div className="flex gap-4">
         {!isAuthenticated ? (
-          <Button
-            variant={"outline"}
-            onClick={setAuthModelOpen}
-          >
+          <Button variant={"outline"} onClick={setAuthModelOpen}>
             Sign In
           </Button>
         ) : (

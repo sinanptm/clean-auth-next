@@ -1,19 +1,18 @@
 "use server";
 
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 import { tryCatch } from "@/lib/utils";
 
-
 const logoutAction = async () => {
-    return await tryCatch(async () => {
-        const cookieStore = await cookies();
+  return await tryCatch(async () => {
+    const cookieStore = await cookies();
 
-        cookieStore.delete('auth-token');
+    cookieStore.delete("auth-token");
 
-        cookieStore.delete('user-info');
+    cookieStore.delete("user-info");
 
-        return;
-    });
+    return;
+  });
 };
 
 export default logoutAction;

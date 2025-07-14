@@ -10,14 +10,14 @@
  * const { data, error } = await tryCatch(async () => await getUserById(id));
  * if (error) { ... }
  */
-export const tryCatch = async <T>(call: () => Promise<T>): Promise<{ data?: T; error?: string; }> => {
-    try {
-        const data = await call();
-        return { data };
-        //eslint-disable-next-line
-    } catch (error: any) {
-        const errorMessage = error?.message || "Unknown error occurred";
-        console.error(error);
-        return { error: errorMessage };
-    }
+export const tryCatch = async <T>(call: () => Promise<T>): Promise<{ data?: T; error?: string }> => {
+  try {
+    const data = await call();
+    return { data };
+    //eslint-disable-next-line
+  } catch (error: any) {
+    const errorMessage = error?.message || "Unknown error occurred";
+    console.error(error);
+    return { error: errorMessage };
+  }
 };

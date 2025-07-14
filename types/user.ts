@@ -1,18 +1,18 @@
 import { DateString } from ".";
 
 export interface IUserProfile {
-    readonly _id?: string;
-    readonly name?: string;
-    readonly email?: string;
-    readonly profile?: string;
+  readonly _id?: string;
+  readonly name?: string;
+  readonly email?: string;
+  readonly profile?: string;
 }
 
 export default interface IUser extends IUserProfile {
-    readonly isBlocked?: boolean;
-    readonly password?: string;
-    readonly createdAt?: DateString;
-    readonly updatedAt?: DateString;
-    readonly token?: string;
+  readonly isBlocked?: boolean;
+  readonly password?: string;
+  readonly createdAt?: DateString;
+  readonly updatedAt?: DateString;
+  readonly token?: string;
 }
 
 export type UserProfilePromise = Promise<IUserProfile | null>;

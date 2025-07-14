@@ -1,18 +1,17 @@
-type User = {
+export type AuthUser = {
   name: string;
   id: string;
-  profile: string;
+  profile?: string;
 };
 export interface UserAuthState {
   isAuthenticated: boolean;
-  user: User | null;
+  user: AuthUser | null;
   isAuthModelOpen: boolean;
 
-  setUser: (user: User) => void;
+  setUser: (user: AuthUser) => void;
   logout: () => void;
   setAuthModelOpen: () => void;
 }
-
 
 export interface LoadingState {
   isLoading: boolean;
