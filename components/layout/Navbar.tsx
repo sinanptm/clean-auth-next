@@ -15,7 +15,10 @@ const ThemeButton = dynamic(() => import("@/components/common/ThemeButton"), { s
 const Navbar = () => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const [isLoading, setLoading] = useState(false);
-  const { isAuthenticated: isUserAuthenticated, setAuthModelOpen } = useAuthUser();
+  const { isAuthenticated, setAuthModelOpen, user, logout } = useAuthUser();
+
+  console.log("isAuthenticated", isAuthenticated);
+  console.log("user", user);
 
   const handleLogoutClick = useCallback(() => {
     setShowLogoutDialog(true);
@@ -24,8 +27,9 @@ const Navbar = () => {
   const handleLogoutConfirm = useCallback(async () => {
     try {
       setLoading(true);
-      if (isUserAuthenticated) {
+      if (isAuthenticated) {
         await logoutAction();
+        logout();
       }
       setShowLogoutDialog(false);
     } catch (error) {
@@ -33,7 +37,7 @@ const Navbar = () => {
     } finally {
       setLoading(false);
     }
-  }, [isUserAuthenticated]);
+  }, [isAuthenticated]);
 
 
   return (
@@ -45,7 +49,7 @@ const Navbar = () => {
           </Link>
           <div className="flex items-center space-x-4">
             <ThemeButton />
-            {isUserAuthenticated ? (
+            {isAuthenticated ? (
               <Button variant="outline" size="sm" onClick={handleLogoutClick}>
                 Logout
               </Button>

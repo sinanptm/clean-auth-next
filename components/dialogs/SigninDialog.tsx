@@ -13,7 +13,7 @@ import signinAction from "@/app/(server)/actions/signin";
 import { } from "@/config";
 
 const SignInDialog = () => {
-    const { isAuthModelOpen, setAuthModelOpen, isHydrated } = useAuthUser();
+    const { isAuthModelOpen, setAuthModelOpen, isHydrated, setUser } = useAuthUser();
 
     const auth = getAuth();
 
@@ -28,17 +28,16 @@ const SignInDialog = () => {
 
             const firebaseIdToken = await result.user.getIdToken();
 
-            const serverPayload = {
-                name: result.user.displayName || "User",
-                email: result.user.email,
-                profile: result.user.photoURL,
-                accessToken: firebaseIdToken,
-            };
+            const res = await signinAction(firebaseIdToken);
 
-
-            await signinAction(firebaseIdToken);
+            if (res.data) {
+                setUser(JSON.parse(res.data)!);
+            } else {
+                toast.error(res.error);
+            }
         } catch (error) {
             console.log(error);
+            toast.error("Unknown error occurred :")
         }
     };
 
