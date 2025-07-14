@@ -1,7 +1,5 @@
 import { initializeApp } from "firebase/app";
 
-export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:8000";
-
 export const MONGO_URI = process.env.MONGO_URI ?? "mongodb://mongo:27017/myapp";
 export const NODE_ENV = process.env.NODE_ENV ?? "dev";
 export const TOKEN_SECRET = process.env.TOKEN_SECRET ?? "Secreta";
