@@ -40,6 +40,7 @@ export default class FireBaseService {
       const decodedToken = await this.firebaseAuth.verifyIdToken(accessToken);
 
       return {
+        id: decodedToken.uid,
         email: decodedToken.email,
         name: decodedToken.name,
         profile: decodedToken.picture,

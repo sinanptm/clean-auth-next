@@ -42,7 +42,7 @@ const Navbar = () => {
     } finally {
       setLoading(false);
     }
-  }, [isAuthenticated, logout]);
+  }, [isAuthenticated, logout, router]);
 
   return (
     <>
