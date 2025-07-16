@@ -18,18 +18,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Snyk security scan # Example: Replace with your preferred security scanner
-        run: echo "Running security scan..."
-        # You would typically integrate a tool like Snyk, Dependabot, or Trivy here.
-        # Example for Snyk:
-        # uses: snyk/actions/node@master
-        # env:
-        #   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        # with:
-        #   command: test
+      - name: Setup Node.js and pnpm
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' 
+          cache: 'pnpm'
 
-      - name: Check for vulnerable dependencies # Example: Replace with your preferred dependency checker
-        run: echo "Checking for vulnerable dependencies..."
-        # You might use `npm audit` or a dedicated dependency scanning tool.
-        # Example for npm audit:
-        # run: npm audit
+      - name: Install pnpm dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run pnpm audit for vulnerable dependencies
+        run: pnpm audit
