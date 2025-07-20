@@ -236,14 +236,20 @@ const MultipleSelector = React.forwardRef<HTMLInputElement, MultipleSelectorProp
     const debouncedSearchTerm = useDebounce(inputValue, delay || 500);
 
     // Memoized transformed options
-    const transformedDefaultOptions = useMemo(() => transformOptions(defaultOptions), [defaultOptions]);
+    const transformedDefaultOptions = useMemo(
+      () => transformOptions(defaultOptions),
+      [defaultOptions],
+    );
 
     const [options, setOptions] = React.useState<GroupOption>(
       transToGroupOption(transformedDefaultOptions, groupBy),
     );
 
     // Check if max selected is reached
-    const isMaxSelected = useMemo(() => selected.length >= maxSelected, [selected.length, maxSelected]);
+    const isMaxSelected = useMemo(
+      () => selected.length >= maxSelected,
+      [selected.length, maxSelected],
+    );
 
     // Enhanced onChange handler with memoization
     const handleOptionsChange = useCallback(
@@ -442,7 +448,9 @@ const MultipleSelector = React.forwardRef<HTMLInputElement, MultipleSelectorProp
 
     // Memoized empty item
     const EmptyItem = useMemo(() => {
-      const defaultEmptyIndicator = <p className="text-center text-sm text-muted-foreground">{emptyText}</p>;
+      const defaultEmptyIndicator = (
+        <p className="text-center text-sm text-muted-foreground">{emptyText}</p>
+      );
       const indicator = emptyIndicator || defaultEmptyIndicator;
       if (onSearch && !creatable && Object.keys(options).length === 0) {
         return (
@@ -534,7 +542,9 @@ const MultipleSelector = React.forwardRef<HTMLInputElement, MultipleSelectorProp
             }}
             className={cn("h-auto overflow-visible bg-transparent", commandProps?.className)}
             shouldFilter={
-              commandProps?.shouldFilter !== undefined ? commandProps.shouldFilter : searchable && !onSearch
+              commandProps?.shouldFilter !== undefined
+                ? commandProps.shouldFilter
+                : searchable && !onSearch
             }
             filter={commandFilter}
           >
@@ -578,7 +588,9 @@ const MultipleSelector = React.forwardRef<HTMLInputElement, MultipleSelectorProp
                     }
                     inputProps?.onFocus?.(event);
                   }}
-                  placeholder={hidePlaceholderWhenSelected && selected.length !== 0 ? "" : placeholder}
+                  placeholder={
+                    hidePlaceholderWhenSelected && selected.length !== 0 ? "" : placeholder
+                  }
                   className={cn(
                     "placeholder:text-muted-foreground/70 flex-1 bg-transparent outline-hidden disabled:cursor-not-allowed",
                     {
@@ -656,13 +668,16 @@ const MultipleSelector = React.forwardRef<HTMLInputElement, MultipleSelectorProp
                                   onSelect={() => handleSelect(option)}
                                   className={cn(
                                     "cursor-pointer",
-                                    option.disable && "pointer-events-none cursor-not-allowed opacity-50",
+                                    option.disable &&
+                                      "pointer-events-none cursor-not-allowed opacity-50",
                                     isMaxSelected && "opacity-50 cursor-not-allowed",
                                   )}
                                 >
                                   {option.label || option.value}
                                   {isMaxSelected && (
-                                    <span className="ml-auto text-xs text-muted-foreground">Max reached</span>
+                                    <span className="ml-auto text-xs text-muted-foreground">
+                                      Max reached
+                                    </span>
                                   )}
                                 </CommandItem>
                               );

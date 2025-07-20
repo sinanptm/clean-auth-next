@@ -13,4 +13,4 @@ export interface LoadingOverlayProps {
 export interface NavMenuProps {
   user?: AuthUser;
   onSignOut: () => void;
-} 
+}

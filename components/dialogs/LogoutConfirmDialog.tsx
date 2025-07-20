@@ -33,8 +33,8 @@ const LogoutConfirmDialog = ({
         <AlertDialogHeader>
           <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to log out? You will need to sign in again to access your {userType}{" "}
-            account.
+            Are you sure you want to log out? You will need to sign in again to access your{" "}
+            {userType} account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

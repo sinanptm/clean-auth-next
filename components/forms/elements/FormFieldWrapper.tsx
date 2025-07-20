@@ -57,7 +57,9 @@ const FormFieldWrapper = ({
       )}
 
       {description && (
-        <p className={cn("text-xs text-muted-foreground", disabled && "opacity-50")}>{description}</p>
+        <p className={cn("text-xs text-muted-foreground", disabled && "opacity-50")}>
+          {description}
+        </p>
       )}
 
       {children(id, describedBy)}

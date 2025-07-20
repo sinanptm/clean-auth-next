@@ -9,7 +9,9 @@ import JwtService from "@/lib/services/JwtService";
  */
 export const middleware = async (request: NextRequest) => {
   const protectedRoutes = ["/profile"];
-  const isProtectedRoute = protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route));
+  const isProtectedRoute = protectedRoutes.some((route) =>
+    request.nextUrl.pathname.startsWith(route),
+  );
 
   if (isProtectedRoute) {
     const token = request.cookies.get("auth-token")?.value;

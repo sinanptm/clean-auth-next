@@ -1,5 +1,11 @@
 import { memo } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import FormFieldWrapper from "./FormFieldWrapper";
 import { BaseFormFieldProps } from "@/types";
@@ -48,7 +54,10 @@ export const CustomSelect = ({ options, placeholder, ...props }: CustomSelectPro
         disabled={props.disabled}
       >
         <SelectTrigger
-          className={cn(props.error && "border-destructive focus:ring-destructive", props.className)}
+          className={cn(
+            props.error && "border-destructive focus:ring-destructive",
+            props.className,
+          )}
           aria-invalid={!!props.error}
           aria-describedby={describedBy}
         >

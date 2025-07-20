@@ -10,7 +10,9 @@
  * const { data, error } = await tryCatch(async () => await getUserById(id));
  * if (error) { ... }
  */
-export const tryCatch = async <T>(call: () => Promise<T>): Promise<{ data?: T; error?: string }> => {
+export const tryCatch = async <T>(
+  call: () => Promise<T>,
+): Promise<{ data?: T; error?: string }> => {
   try {
     const data = await call();
     return { data };

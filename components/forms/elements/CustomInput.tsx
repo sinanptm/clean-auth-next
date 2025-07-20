@@ -11,7 +11,9 @@ import { BaseFormFieldProps } from "@/types";
  * @extends BaseFormFieldProps
  * @extends React.InputHTMLAttributes<HTMLInputElement>
  */
-interface CustomInputProps extends BaseFormFieldProps, React.InputHTMLAttributes<HTMLInputElement> {}
+interface CustomInputProps
+  extends BaseFormFieldProps,
+    React.InputHTMLAttributes<HTMLInputElement> {}
 
 /**
  * @function CustomInput

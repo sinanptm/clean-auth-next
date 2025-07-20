@@ -129,7 +129,10 @@ const CustomFileInput = ({
           {showPreview && selectedFiles.length > 0 && (
             <div className="space-y-2">
               {selectedFiles.map((file, index) => (
-                <div key={index} className="flex items-center justify-between p-2 bg-muted rounded-md">
+                <div
+                  key={index}
+                  className="flex items-center justify-between p-2 bg-muted rounded-md"
+                >
                   <div className="flex items-center space-x-2">
                     <File className="h-4 w-4 text-muted-foreground" />
                     <div>

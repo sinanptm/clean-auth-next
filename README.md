@@ -4,29 +4,29 @@ This is a robust Next.js starter kit designed to provide a solid foundation for 
 
 ## Features
 
--   **Next.js 15+**: Latest features including Server Actions for efficient data mutations.
--   **Authentication**: Secure user authentication flow:
-    -   **Firebase Integration**: Client-side authentication using Firebase (e.g., Google Sign-In).
-    -   **Custom JWT**: Server-side generation and verification of JSON Web Tokens for session management.
-    -   **MongoDB**: User data persistence using Mongoose.
-    -   **Secure Cookies**: `httpOnly` and `secure` cookies for storing authentication tokens.
--   **Protected Routes**: Middleware to safeguard routes based on authentication status.
--   **State Management**: Global authentication state management with Zustand.
--   **UI Components**: Beautiful and accessible UI components powered by Shadcn UI.
--   **Styling**: Utility-first CSS framework with Tailwind CSS.
--   **Theming**: Dark/Light mode toggle with `next-themes`.
--   **Environment Variables**: Easy configuration using `.env` files.
+- **Next.js 15+**: Latest features including Server Actions for efficient data mutations.
+- **Authentication**: Secure user authentication flow:
+  - **Firebase Integration**: Client-side authentication using Firebase (e.g., Google Sign-In).
+  - **Custom JWT**: Server-side generation and verification of JSON Web Tokens for session management.
+  - **MongoDB**: User data persistence using Mongoose.
+  - **Secure Cookies**: `httpOnly` and `secure` cookies for storing authentication tokens.
+- **Protected Routes**: Middleware to safeguard routes based on authentication status.
+- **State Management**: Global authentication state management with Zustand.
+- **UI Components**: Beautiful and accessible UI components powered by Shadcn UI.
+- **Styling**: Utility-first CSS framework with Tailwind CSS.
+- **Theming**: Dark/Light mode toggle with `next-themes`.
+- **Environment Variables**: Easy configuration using `.env` files.
 
 ## Technologies Used
 
--   **Framework**: Next.js 15+
--   **Language**: TypeScript
--   **Authentication**: Firebase, JWT (jose), Firebase Admin SDK
--   **Database**: MongoDB (Mongoose ORM)
--   **State Management**: Zustand
--   **UI Library**: Shadcn UI
--   **Styling**: Tailwind CSS
--   **Theming**: next-themes
+- **Framework**: Next.js 15+
+- **Language**: TypeScript
+- **Authentication**: Firebase, JWT (jose), Firebase Admin SDK
+- **Database**: MongoDB (Mongoose ORM)
+- **State Management**: Zustand
+- **UI Library**: Shadcn UI
+- **Styling**: Tailwind CSS
+- **Theming**: next-themes
 
 ## Getting Started
 
@@ -73,9 +73,10 @@ NEXT_PUBLIC_FIREBASE_APP_ID=your-firebase-app-id
 ```
 
 **Important:**
--   Replace placeholders with your actual Firebase project credentials.
--   Ensure `MONGO_URI` points to your MongoDB instance.
--   Generate a strong, unique `TOKEN_SECRET` for JWT signing.
+
+- Replace placeholders with your actual Firebase project credentials.
+- Ensure `MONGO_URI` points to your MongoDB instance.
+- Generate a strong, unique `TOKEN_SECRET` for JWT signing.
 
 ### 4. Run the Development Server
 
@@ -89,10 +90,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 In the project directory, you can run:
 
--   `pnpm run dev`: Runs the app in development mode.
--   `pnpm run build`: Builds the application for production.
--   `pnpm run start`: Starts the production server.
--   `pnpm run lint`: Runs ESLint to check for code quality issues.
--   `pnpm run format`: Formats code using Prettier.
+- `pnpm run dev`: Runs the app in development mode.
+- `pnpm run build`: Builds the application for production.
+- `pnpm run start`: Starts the production server.
+- `pnpm run lint`: Runs ESLint to check for code quality issues.
+- `pnpm run format`: Formats code using Prettier.
+
+```
 
 ```

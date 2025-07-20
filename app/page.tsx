@@ -15,7 +15,12 @@ const Page = () => {
             Sign In
           </Button>
         ) : (
-            <h1>Welcome 🏠 <Link className="underline" href={'/profile'}>{user.name}</Link></h1>
+          <h1>
+            Welcome 🏠{" "}
+            <Link className="underline" href={"/profile"}>
+              {user.name}
+            </Link>
+          </h1>
         )}
       </div>
     </div>

@@ -13,14 +13,15 @@ const RootLayout = ({ children }: WrapperProps) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${mainFont.className} antialiased `}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
           <Navbar />
           {children}
-          <Toaster
-            position="top-right"
-            closeButton
-            richColors
-          />
+          <Toaster position="top-right" closeButton richColors />
           <LoadingOverlay />
           <SigninDialog />
         </ThemeProvider>

@@ -10,7 +10,9 @@ import { BaseFormFieldProps } from "@/types";
  * @extends BaseFormFieldProps
  * @extends React.TextareaHTMLAttributes<HTMLTextAreaElement>
  */
-interface CustomTextAreaProps extends BaseFormFieldProps, React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface CustomTextAreaProps
+  extends BaseFormFieldProps,
+    React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * @property resize - If true, allows the textarea to be resized by the user. Defaults to true.
    */
@@ -31,7 +33,11 @@ const CustomTextArea = ({ resize = true, ...props }: CustomTextAreaProps) => {
       {(id, describedBy) => (
         <Textarea
           id={id}
-          className={cn(!resize && "resize-none", props.error && "border-destructive", props.className)}
+          className={cn(
+            !resize && "resize-none",
+            props.error && "border-destructive",
+            props.className,
+          )}
           aria-describedby={describedBy}
           aria-invalid={!!props.error}
           {...textAreaProps}

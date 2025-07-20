@@ -61,7 +61,11 @@ interface CustomRadioGroupProps extends BaseFormFieldProps {
  * @param props - The properties for the CustomRadioGroup component.
  * @returns A React element representing the custom radio group.
  */
-const CustomRadioGroup = ({ options, orientation = "vertical", ...props }: CustomRadioGroupProps) => (
+const CustomRadioGroup = ({
+  options,
+  orientation = "vertical",
+  ...props
+}: CustomRadioGroupProps) => (
   <FormFieldWrapper {...props}>
     {(id, describedBy) => (
       <RadioGroup
@@ -96,7 +100,9 @@ const CustomRadioGroup = ({ options, orientation = "vertical", ...props }: Custo
               >
                 {option.label}
               </label>
-              {option.description && <p className="text-xs text-muted-foreground">{option.description}</p>}
+              {option.description && (
+                <p className="text-xs text-muted-foreground">{option.description}</p>
+              )}
             </div>
           </div>
         ))}

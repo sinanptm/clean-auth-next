@@ -12,7 +12,7 @@ const ThemeButton = () => {
     <div>
       <Toggle
         variant="outline"
-        size={'sm'}
+        size={"sm"}
         className="group dark:hover:bg-muted dark:bg-transparent"
         pressed={theme === "dark"}
         onPressedChange={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}

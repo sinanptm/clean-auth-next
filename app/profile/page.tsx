@@ -9,7 +9,7 @@ const ProfilePage = async () => {
   const user = await AuthServerUtils.getAuthUser();
 
   if (!user) {
-    notFound()
+    notFound();
   }
 
   return (

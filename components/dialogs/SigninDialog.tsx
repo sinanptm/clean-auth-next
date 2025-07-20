@@ -5,7 +5,13 @@ import { toast } from "sonner";
 import Image from "next/image";
 import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, getAuth } from "firebase/auth";
 import { Github } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import useAuth from "@/hooks/store/auth/useAuth";
 import signinAction from "@/app/(server)/actions/signin";

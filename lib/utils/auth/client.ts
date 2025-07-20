@@ -14,7 +14,9 @@ export class AuthClientUtils {
 
     try {
       const cookies = document.cookie.split(";");
-      const userInfoCookie = cookies.find((cookie) => cookie.trim().startsWith("user-info="))?.split("=")[1];
+      const userInfoCookie = cookies
+        .find((cookie) => cookie.trim().startsWith("user-info="))
+        ?.split("=")[1];
 
       if (!userInfoCookie) return null;
 

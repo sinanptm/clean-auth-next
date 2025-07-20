@@ -19,8 +19,8 @@ const connectDB = async () => {
       console.log("DB CONNECTION IN PROGRESS ⏳");
       // Wait for the connection to complete
       await new Promise((resolve, reject) => {
-        mongoose.connection.once('connected', resolve);
-        mongoose.connection.once('error', reject);
+        mongoose.connection.once("connected", resolve);
+        mongoose.connection.once("error", reject);
       });
       return Promise.resolve(true);
     }

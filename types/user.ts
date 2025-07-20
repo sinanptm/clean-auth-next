@@ -20,4 +20,4 @@ export type UserPromise = Promise<IUser | null>;
 
 export interface AuthUser extends Pick<IUser, "email" | "name" | "profile"> {
   id: string;
-};
+}

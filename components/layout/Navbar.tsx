@@ -53,17 +53,14 @@ const Navbar = () => {
           </Link>
           <div className="flex items-center space-x-4">
             {isAuthenticated ? (
-              <NavMenu
-                user={user!}
-                onSignOut={handleLogoutClick}
-              />
+              <NavMenu user={user!} onSignOut={handleLogoutClick} />
             ) : (
-                <>
-                  <ThemeButton />
-                  <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
-                    Sign In
-                  </Button>
-                </>
+              <>
+                <ThemeButton />
+                <Button variant="outline" size="sm" onClick={setAuthModelOpen}>
+                  Sign In
+                </Button>
+              </>
             )}
           </div>
         </div>
