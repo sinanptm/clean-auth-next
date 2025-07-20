@@ -1,101 +1,123 @@
-# Auth Template
+<div align="center">
+  <br />
+    <a href="https://github.com/sinanptm/clean-auth-next-mongo" target="_blank">
+      <img src="https://raw.githubusercontent.com/sinanptm/clean-auth-next-mongo/main/public/assets/logo.png" alt="Logo" width="120" />
+    </a>
+  <br />
+  <h1 align="center">Next.js MongoDB Authentication Starter Kit</h1>
+  <p align="center">
+    A full-stack authentication starter kit built with Next.js, MongoDB, and Firebase for OAuth.
+    <br />
+    <a href="https://clean-auth-next.vercel.app/">View Demo</a>
+    ·
+    <a href="https://github.com/sinanptm/clean-auth-next-mongo/issues/new?labels=bug&template=bug-report.md">Report Bug</a>
+    ·
+    <a href="https://github.com/sinanptm/clean-auth-next-mongo/issues/new?labels=feature-request&template=feature-request.md">Request Feature</a>
+  </p>
+</div>
 
-This is a robust Next.js starter kit designed to provide a solid foundation for web applications requiring secure authentication. It integrates Firebase for client-side authentication, a custom JWT-based session management system, and MongoDB for user data persistence. Built with Next.js Server Actions, Zustand for state management, and Shadcn UI for a modern interface, this template streamlines the development of authenticated web experiences.
+<div align="center">
 
-## Features
+[![Next.js](https://img.shields.io/badge/Next.js-14.x-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.x-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-green?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-orange?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-blue?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-- **Next.js 15+**: Latest features including Server Actions for efficient data mutations.
-- **Authentication**: Secure user authentication flow:
-  - **Firebase Integration**: Client-side authentication using Firebase (e.g., Google Sign-In).
-  - **Custom JWT**: Server-side generation and verification of JSON Web Tokens for session management.
-  - **MongoDB**: User data persistence using Mongoose.
-  - **Secure Cookies**: `httpOnly` and `secure` cookies for storing authentication tokens.
-- **Protected Routes**: Middleware to safeguard routes based on authentication status.
-- **State Management**: Global authentication state management with Zustand.
-- **UI Components**: Beautiful and accessible UI components powered by Shadcn UI.
-- **Styling**: Utility-first CSS framework with Tailwind CSS.
-- **Theming**: Dark/Light mode toggle with `next-themes`.
-- **Environment Variables**: Easy configuration using `.env` files.
+</div>
 
-## Technologies Used
+---
 
-- **Framework**: Next.js 15+
-- **Language**: TypeScript
-- **Authentication**: Firebase, JWT (jose), Firebase Admin SDK
-- **Database**: MongoDB (Mongoose ORM)
-- **State Management**: Zustand
-- **UI Library**: Shadcn UI
-- **Styling**: Tailwind CSS
-- **Theming**: next-themes
+## About The Project
+
+This project is a comprehensive starter kit for building applications that require robust user authentication. It combines the power of Next.js for the frontend and backend, MongoDB for the database, and Firebase for seamless OAuth integration.
+
+### Features
+
+- **Next.js 14 with App Router:** The latest and greatest from Next.js for building modern web applications.
+- **MongoDB Integration:** Uses Mongoose for elegant MongoDB object modeling.
+- **Firebase OAuth:** Easily integrate with Google, GitHub, and other providers.
+- **Credential-Based Authentication:** Standard email and password authentication.
+- **Secure JWT Sessions:** Uses `jose` for secure JSON Web Token handling.
+- **Form Handling with `react-hook-form`:** Efficient and easy form validation.
+- **Beautiful UI Components:** Built with `shadcn/ui` and `Radix UI`.
+- **State Management with `Zustand`:** Simple and powerful state management.
+- **TypeScript:** For type safety and improved developer experience.
+- **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
+- **ESLint and Prettier:** For code quality and consistent formatting.
+
+---
 
 ## Getting Started
 
-Follow these steps to get your development environment set up.
+Follow these steps to get a local copy up and running.
 
-### 1. Clone the repository
+### Prerequisites
 
-```bash
-npm install -g pnpm
-git clone <repository-url>
-cd next-auth
-```
+- [Node.js](https://nodejs.org/en/) (v18 or later)
+- [pnpm](https://pnpm.io/installation)
+- A [MongoDB](https://www.mongodb.com/try/download/community) instance (local or cloud)
+- A [Firebase](https://console.firebase.google.com/) project
 
-### 2. Install Dependencies
+### Installation
 
-Using pnpm:
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/sinanptm/clean-auth-next-mongo.git
+   cd clean-auth-next-mongo
+   ```
 
-```bash
-pnpm install
-```
+2. **Install dependencies:**
+   ```sh
+   pnpm install
+   ```
 
-### 3. Environment Variables
+3. **Set up environment variables:**
+   Create a `.env.local` file in the root of the project and add the following variables. You can use the `.env.example` file as a template.
 
-Create a `.env` file in the root directory of the project and populate it with the necessary environment variables. You can use `.env.example` as a reference.
+   ```env
+   # MongoDB
+   MONGO_URI=your_mongodb_connection_string
 
-```
-# Server Configuration
-NEXT_PUBLIC_SERVER_URL=http://localhost:8000
-MONGO_URI=mongodb://localhost:27017/nextauth
-TOKEN_SECRET=YOUR_JWT_SECRET_KEY
+   # JWT
+   JWT_SECRET=your_jwt_secret
+   JWT_EXPIRES_IN=7d
 
-# Firebase Admin SDK Configuration (for server-side token verification)
-FIREBASE_CLIENT_EMAIL=your-firebase-client-email@your-project-id.iam.gserviceaccount.com
-FIREBASE_PROJECT_ID=your-firebase-project-id
-FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_FIREBASE_PRIVATE_KEY\n-----END PRIVATE KEY-----\n"
+   # Firebase (Client)
+   NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+   NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+   NEXT_PUBLIC_FIREBASE_PROJECT_ID=your_firebase_project_id
+   NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+   NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+   NEXT_PUBLIC_FIREBASE_APP_ID=your_firebase_app_id
 
-# Firebase Client SDK Configuration (for client-side authentication)
-NEXT_PUBLIC_FIREBASE_API_KEY=your-firebase-api-key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-firebase-auth-domain
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-firebase-project-id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-firebase-storage-bucket
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-firebase-messaging-sender-id
-NEXT_PUBLIC_FIREBASE_APP_ID=your-firebase-app-id
-```
+   # Firebase (Admin)
+   FIREBASE_PROJECT_ID=your_firebase_project_id
+   FIREBASE_CLIENT_EMAIL=your_firebase_client_email
+   FIREBASE_PRIVATE_KEY=your_firebase_private_key
+   ```
 
-**Important:**
+4. **Run the development server:**
+   ```sh
+   pnpm dev
+   ```
 
-- Replace placeholders with your actual Firebase project credentials.
-- Ensure `MONGO_URI` points to your MongoDB instance.
-- Generate a strong, unique `TOKEN_SECRET` for JWT signing.
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 4. Run the Development Server
-
-```bash
-pnpm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `pnpm dev`: Starts the development server.
+- `pnpm build`: Creates a production build.
+- `pnpm start`: Starts the production server.
+- `pnpm lint`: Lints the codebase.
+- `pnpm format`: Formats the code with Prettier.
 
-- `pnpm run dev`: Runs the app in development mode.
-- `pnpm run build`: Builds the application for production.
-- `pnpm run start`: Starts the production server.
-- `pnpm run lint`: Runs ESLint to check for code quality issues.
-- `pnpm run format`: Formats code using Prettier.
+---
 
-```
+## License
 
-```
+Distributed under the MIT License. See <a href="https://github.com/sinanptm/clean-auth-next-mongo/blob/main/LICENSE.md">LICENSE</a> for more information.
+
