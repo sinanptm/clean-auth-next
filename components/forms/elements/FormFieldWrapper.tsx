@@ -15,7 +15,7 @@ import { FormFieldWrapperProps } from "@/types";
  * @param props.showHint - Controls the visibility of the hint text.
  * @param props.description - A descriptive text for the form field.
  * @param props.disabled - If true, the field and its label will appear disabled.
- * @param props.className - Additional CSS classes for the wrapper div.
+ * @param props.wrapperClass - Additional CSS classes for the wrapper div.
  * @param props.children - A render prop that provides the generated `id` and `describedBy` for the input element.
  * @returns A React element wrapping the form field with accessibility and styling.
  */
@@ -27,7 +27,7 @@ const FormFieldWrapper = ({
   showHint,
   description,
   disabled,
-  className,
+  wrapperClass,
   children,
 }: FormFieldWrapperProps) => {
   const id = useId();
@@ -39,7 +39,7 @@ const FormFieldWrapper = ({
     <div
       className={cn(
         "space-y-2 [--ring:var(--color-indigo-300)] *:not-first:mt-2 in-[.dark]:[--ring:var(--color-indigo-900)]",
-        className,
+        wrapperClass,
       )}
     >
       {label && (

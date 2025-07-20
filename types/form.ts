@@ -29,7 +29,7 @@ export interface BaseFormFieldProps {
      */
     disabled?: boolean;
     /**
-     * @property className - Additional CSS classes to apply to the form field's container.
+     * @property className - Additional CSS classes to apply to the form field.
      */
     className?: string;
     /**
@@ -48,4 +48,8 @@ export interface FormFieldWrapperProps extends BaseFormFieldProps {
      * @property children - A render prop function that receives `id` and `describedBy` for accessibility.
      */
     children: (id: string, describedBy: string | undefined) => React.ReactNode;
+    /**
+    * @property className - Additional CSS classes to apply to the form field's container.
+    */
+    wrapperClass?: string;
 }
