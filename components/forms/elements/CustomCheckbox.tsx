@@ -28,7 +28,7 @@ interface CustomCheckBoxProps extends BaseFormFieldProps {
  * @function CustomCheckbox
  * @description A customizable checkbox component that integrates with form field wrapper for consistent styling and error handling.
  * @param {CustomCheckBoxProps} props - The properties for the CustomCheckbox component.
- * @returns {JSX.Element} A React element representing the custom checkbox.
+ * @returns A React element representing the custom checkbox.
  */
 const CustomCheckbox = (props: CustomCheckBoxProps) => (
   <FormFieldWrapper {...props}>

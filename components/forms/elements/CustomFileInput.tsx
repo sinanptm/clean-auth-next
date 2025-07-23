@@ -31,7 +31,7 @@ interface CustomFileInputProps
  * @function CustomFileInput
  * @description A customizable file input component with drag-and-drop functionality, file preview, and size/type validation.
  * @param {CustomFileInputProps} props - The properties for the CustomFileInput component.
- * @returns {JSX.Element} A React element representing the custom file input.
+ * @returns A React element representing the custom file input.
  */
 const CustomFileInput = ({
   showPreview = true,
