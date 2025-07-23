@@ -40,6 +40,7 @@ const CustomCheckbox = (props: CustomCheckBoxProps) => (
         onCheckedChange={props.onCheckedChange}
         disabled={props.disabled}
         className={cn(
+          "ml-3",
           props.error && "border-destructive data-[state=checked]:bg-destructive cursor-pointer",
           props.className,
         )}

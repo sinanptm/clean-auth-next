@@ -48,7 +48,7 @@ const FormFieldWrapper = ({
           className={cn(
             "text-sm font-medium leading-none",
             hasError && "text-destructive",
-            required && "after:content-['*'] after:ml-0.5 after:text-destructive",
+            required && "after:content-['*'] after:ml-1 after:text-destructive",
             disabled && "opacity-50 cursor-not-allowed",
           )}
         >

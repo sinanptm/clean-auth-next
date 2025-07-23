@@ -60,6 +60,7 @@ export const CustomSelect = ({ options, placeholder, ...props }: CustomSelectPro
           )}
           aria-invalid={!!props.error}
           aria-describedby={describedBy}
+          id={id}
         >
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>

@@ -87,7 +87,7 @@ const CustomRadioGroup = ({
               value={option.value}
               id={`${id}-${option.value}`}
               disabled={option.disabled}
-              className={cn("cursor-pointer", props.error && "border-destructive")}
+              className={cn("cursor-pointer mt-1", props.error && "border-destructive")}
             />
             <div className="flex-1 space-y-1">
               <label

@@ -143,7 +143,7 @@ const CustomFileInput = ({
                   <button
                     type="button"
                     onClick={() => removeFile(index)}
-                    className="text-muted-foreground hover:text-destructive"
+                    className="text-muted-foreground hover:text-destructive cursor-pointer"
                   >
                     <X className="h-4 w-4" />
                   </button>
