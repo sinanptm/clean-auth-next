@@ -24,7 +24,7 @@ const Page = () => {
         )}
         <Link href={"/form"}>
           <h2 className="font-bold">
-            See the form example
+            See the form example using custom inputs
             <span className="underline ml-3">HERE</span>
           </h2>
         </Link>
