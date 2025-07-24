@@ -3,13 +3,14 @@ import { z } from "zod";
 export const formSchema = z.object({
     // Personal Information
     name: z.string().min(1, "Name is required"),
-    email: z.string().email("Invalid email address").optional(),
+    email: z.email("Invalid email address").optional(),
     phone: z.string().optional(),
     bio: z.string().optional(),
 
     // Account & Security
     username: z.string().min(3, "Username must be at least 3 characters"),
     password: z.string().min(8, "Password must be at least 8 characters"),
+    otp: z.string().min(6, "OTP must be 6 characters"),
 
     // Location & Preferences
     country: z.string().min(1, "Select a country"),

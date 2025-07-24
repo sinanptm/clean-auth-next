@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TableOfContents from "./TableOfContents";
 import { formSchema, FormValues } from "./schema";
 import CustomInput from "@/components/forms/elements/CustomInput";
+import CustomOTPInput from "@/components/forms/elements/CustomOTPInput";
 
 const FormPage = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -139,7 +140,7 @@ const FormPage = () => {
                         Account & File Upload
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <Card className="h-fit">
+                        <Card className="h-fit" id="login-credentials">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     🔑 Login Credentials
@@ -169,7 +170,27 @@ const FormPage = () => {
                                 />
                             </CardContent>
                         </Card>
-                        <Card className="h-fit">
+                        <Card className="h-fit" id="otp-verification">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2">
+                                    🔢 OTP Verification
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <CustomOTPInput
+                                    maxLength={6}
+                                    label="Enter OTP"
+                                    value={watch("otp")}
+                                    onChange={(value) => setValue("otp", value)}
+                                    error={errors.otp?.message}
+                                    disabled={isLoading}
+                                    hint="Enter the 6-digit code sent to your phone"
+                                    showHint
+                                    required
+                                />
+                            </CardContent>
+                        </Card>
+                        <Card className="h-fit" id="document-upload">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     📤 Document Upload
