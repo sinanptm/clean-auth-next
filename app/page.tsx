@@ -9,7 +9,7 @@ const Page = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen space-y-5 justify-center gap-4">
-      <div className="flex gap-4">
+      <div className="flex flex-col gap-4">
         {!isAuthenticated || !user ? (
           <Button variant={"outline"} onClick={setAuthModelOpen}>
             Sign In
@@ -22,8 +22,14 @@ const Page = () => {
             </Link>
           </h1>
         )}
+        <Link href={"/form"}>
+          <h2 className="font-bold">
+            See the form example
+            <span className="underline ml-3">HERE</span>
+          </h2>
+        </Link>
       </div>
-    </div>
+    </div >
   );
 };
 
